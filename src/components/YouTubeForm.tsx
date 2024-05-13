@@ -55,6 +55,7 @@ export const YouTubeForm = () => {
         getValues,
         setValue,
         reset,
+        trigger,
     } = form;
 
     const {
@@ -281,6 +282,7 @@ export const YouTubeForm = () => {
                 <button type='button' onClick={ handleGetValues }>Get values</button>
                 <button type='button' onClick={ handleSetNameValue }>Set name value</button>
                 <button type='button' onClick={ () => reset() }>Reset form</button>
+                <button type='button' onClick={ () => trigger() }>Trigger validation</button>
             </form>
 
             <DevTool control={ control } />

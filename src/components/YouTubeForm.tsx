@@ -59,9 +59,10 @@ export const YouTubeForm = () => {
         dirtyFields,
         touchedFields,
         isDirty,
+        isValid,
     } = formState;
 
-    console.log( { touchedFields, dirtyFields, isDirty } );
+    console.log( { touchedFields, dirtyFields, isDirty, isValid } );
 
     const { fields, append, remove } = useFieldArray( {
         name: 'phNumbers',
@@ -241,7 +242,8 @@ export const YouTubeForm = () => {
                     <p className='error'>{ errors.birthday?.message }</p>
                 </div>
 
-                <button>Submit</button>
+                {/* Desactiva el btn si ningún campo ha sido modificado o el formulario no es válido */ }
+                <button disabled={ !isDirty || !isValid }>Submit</button>
                 <button type='button' onClick={ handleGetValues }>Get values</button>
                 <button type='button' onClick={ handleSetNameValue }>Set name value</button>
             </form>

@@ -1,6 +1,6 @@
 import { useForm, useFieldArray, FieldErrors } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 
 let renderCount = 0;
 
@@ -45,13 +45,14 @@ export const YouTubeForm = () => {
     } );
 
     const {
+        formState,
         register,
         control,
         handleSubmit,
-        formState,
         watch,
         getValues,
         setValue,
+        reset,
     } = form;
 
     const {
@@ -59,7 +60,7 @@ export const YouTubeForm = () => {
         // dirtyFields,
         // touchedFields,
         isDirty,
-        isValid,
+        // isValid,
         isSubmitting,
         isSubmitted,
         isSubmitSuccessful,
@@ -84,6 +85,13 @@ export const YouTubeForm = () => {
     // }, [ watch ] );
 
     // const watchUserName = watch( 'username' );
+
+    // Si el envío es exitoso, el formulario se puede limpiar.
+    // También sirve para disparar una alerta
+    useEffect( () => {
+        if ( isSubmitSuccessful ) reset();
+    }, [ isSubmitSuccessful, reset ] );
+
 
     const onSubmit = async ( data: FormValues ) => {
         console.log( 'submitting...' );
@@ -264,6 +272,7 @@ export const YouTubeForm = () => {
                 <button disabled={ !isDirty || isSubmitting }>Submit</button>
                 <button type='button' onClick={ handleGetValues }>Get values</button>
                 <button type='button' onClick={ handleSetNameValue }>Set name value</button>
+                <button type='button' onClick={ () => reset() }>Reset form</button>
             </form>
 
             <DevTool control={ control } />

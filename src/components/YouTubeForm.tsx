@@ -50,6 +50,7 @@ export const YouTubeForm = () => {
         handleSubmit,
         formState,
         watch,
+        getValues,
     } = form;
 
     const {
@@ -62,13 +63,13 @@ export const YouTubeForm = () => {
     } );
 
     // Para implementar un side effect después de ver un valor
-    useEffect( () => {
-        const subscription = watch( value => {
-            console.log( value );
-        } );
+    // useEffect( () => {
+    //     const subscription = watch( value => {
+    //         console.log( value );
+    //     } );
 
-        return () => subscription.unsubscribe();
-    }, [ watch ] );
+    //     return () => subscription.unsubscribe();
+    // }, [ watch ] );
 
     // const watchUserName = watch( 'username' );
 
@@ -76,7 +77,11 @@ export const YouTubeForm = () => {
         console.log( 'Form submitted', data );
     };
 
-
+    // getValues es una mejor opción para conseguir los datos que watch ya que no necesita
+    // estar escuchando activamente los campos y no genera necesariamente re-renders
+    const handleGetValues = () => {
+        console.log( 'getValues:', getValues() );
+    };
 
     return (
         <div>
@@ -213,6 +218,7 @@ export const YouTubeForm = () => {
                 </div>
 
                 <button>Submit</button>
+                <button type='button' onClick={ handleGetValues }>GetValues</button>
             </form>
 
             <DevTool control={ control } />

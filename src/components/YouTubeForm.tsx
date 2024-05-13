@@ -41,7 +41,9 @@ export const YouTubeForm = () => {
                 age: 0,
                 birthday: new Date(),
             };
-        }
+        },
+        // La validación por defecto es onSubmit
+        mode: 'onTouched',
     } );
 
     const {

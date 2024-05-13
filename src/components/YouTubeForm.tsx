@@ -1,6 +1,6 @@
-import { useForm, useFieldArray } from 'react-hook-form';
+import { useForm, useFieldArray, FieldErrors } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 let renderCount = 0;
 
@@ -83,6 +83,12 @@ export const YouTubeForm = () => {
         console.log( 'Form submitted', data );
     };
 
+    // Uso para manejar el error de formularios
+    const onError = ( errors: FieldErrors<FormValues> ) => {
+        // Este es el lugar ideal para generar logs o manejar el error de forma global
+        console.log( 'Form errors', errors );
+    };
+
     // getValues es una mejor opción para conseguir los datos que watch ya que no necesita
     // estar escuchando activamente los campos y no genera necesariamente re-renders
     const handleGetValues = () => {
@@ -102,7 +108,7 @@ export const YouTubeForm = () => {
             <span>Form renders: { ++renderCount / 2 }</span>
             <h1>YouTube Form</h1>
             {/* <h2>Watched value: { watchUserName }</h2> */ }
-            <form onSubmit={ handleSubmit( onSubmit ) } noValidate>
+            <form onSubmit={ handleSubmit( onSubmit, onError ) } noValidate>
                 <div className='form-control'>
                     <label htmlFor='username'>Username</label>
                     <input

@@ -7,6 +7,10 @@ type FormValues = {
     username: string;
     email: string;
     channel: string;
+    social: {
+        x: string,
+        linkedin: string,
+    };
 };
 
 export const YouTubeForm = () => {
@@ -20,7 +24,11 @@ export const YouTubeForm = () => {
             return {
                 username: 'Batman',
                 email: data?.email,
-                channel: ''
+                channel: '',
+                social: {
+                    x: '',
+                    linkedin: '',
+                }
             };
         }
     } );
@@ -97,6 +105,16 @@ export const YouTubeForm = () => {
                         } ) }
                     />
                     <p className='error'>{ errors.channel?.message }</p>
+                </div>
+
+                <div className='form-control'>
+                    <label htmlFor='x'>X</label>
+                    <input type='text' id='x' { ...register( 'social.x' ) } />
+                </div>
+
+                <div className='form-control'>
+                    <label htmlFor='linkedin'>Linkedin</label>
+                    <input type='text' id='linkedin' { ...register( 'social.linkedin' ) } />
                 </div>
 
                 <button>Submit</button>

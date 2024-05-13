@@ -49,13 +49,19 @@ export const YouTubeForm = () => {
         control,
         handleSubmit,
         formState,
-        watch,
+        // watch,
         getValues,
+        setValue,
     } = form;
 
     const {
         errors,
+        dirtyFields,
+        touchedFields,
+        isDirty,
     } = formState;
+
+    console.log( { touchedFields, dirtyFields, isDirty } );
 
     const { fields, append, remove } = useFieldArray( {
         name: 'phNumbers',
@@ -81,6 +87,14 @@ export const YouTubeForm = () => {
     // estar escuchando activamente los campos y no genera necesariamente re-renders
     const handleGetValues = () => {
         console.log( 'getValues:', getValues() );
+    };
+
+    const handleSetNameValue = () => {
+        setValue( 'username', '', {
+            shouldDirty: true,
+            shouldTouch: true,
+            shouldValidate: true,
+        } );
     };
 
     return (
@@ -218,7 +232,8 @@ export const YouTubeForm = () => {
                 </div>
 
                 <button>Submit</button>
-                <button type='button' onClick={ handleGetValues }>GetValues</button>
+                <button type='button' onClick={ handleGetValues }>Get values</button>
+                <button type='button' onClick={ handleSetNameValue }>Set name value</button>
             </form>
 
             <DevTool control={ control } />

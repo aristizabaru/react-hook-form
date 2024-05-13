@@ -56,13 +56,18 @@ export const YouTubeForm = () => {
 
     const {
         errors,
-        dirtyFields,
-        touchedFields,
+        // dirtyFields,
+        // touchedFields,
         isDirty,
         isValid,
+        isSubmitting,
+        isSubmitted,
+        isSubmitSuccessful,
+        submitCount,
     } = formState;
 
-    console.log( { touchedFields, dirtyFields, isDirty, isValid } );
+    console.log( { isSubmitting, isSubmitted, isSubmitSuccessful, submitCount } );
+    // console.log( { touchedFields, dirtyFields, isDirty, isValid } );
 
     const { fields, append, remove } = useFieldArray( {
         name: 'phNumbers',
@@ -80,7 +85,19 @@ export const YouTubeForm = () => {
 
     // const watchUserName = watch( 'username' );
 
-    const onSubmit = ( data: FormValues ) => {
+    const onSubmit = async ( data: FormValues ) => {
+        console.log( 'submitting...' );
+
+        // Test para validar desactivación de btn mientras se envía el formulario
+        const enviando = () => {
+            return new Promise<void>( ( resolve ) => {
+                setTimeout( () => {
+                    resolve();
+                }, 3000 );
+            } );
+        };
+        await enviando();
+
         console.log( 'Form submitted', data );
     };
 
@@ -243,7 +260,8 @@ export const YouTubeForm = () => {
                 </div>
 
                 {/* Desactiva el btn si ningún campo ha sido modificado o el formulario no es válido */ }
-                <button disabled={ !isDirty || !isValid }>Submit</button>
+                {/* isSubmitting desactiva el btn cuando está enviando la información */ }
+                <button disabled={ !isDirty || isSubmitting }>Submit</button>
                 <button type='button' onClick={ handleGetValues }>Get values</button>
                 <button type='button' onClick={ handleSetNameValue }>Set name value</button>
             </form>

@@ -11,24 +11,26 @@ type FormValues = {
         x: string,
         linkedin: string,
     };
+    phoneNumbers: string[];
 };
 
 export const YouTubeForm = () => {
     const form = useForm<FormValues>( {
         // El objeto de configuración permite pasar valores por defecto
-        defaultValues: async () => {
+        defaultValues: async (): Promise<FormValues> => {
 
             const response = await fetch( 'https://jsonplaceholder.typicode.com/users/1' );
             const data = await response.json();
 
             return {
-                username: 'Batman',
+                username: 'Andres',
                 email: data?.email,
-                channel: '',
+                channel: 'aristizabaru',
                 social: {
                     x: '',
                     linkedin: '',
-                }
+                },
+                phoneNumbers: [ '', '' ],
             };
         }
     } );
@@ -115,6 +117,16 @@ export const YouTubeForm = () => {
                 <div className='form-control'>
                     <label htmlFor='linkedin'>Linkedin</label>
                     <input type='text' id='linkedin' { ...register( 'social.linkedin' ) } />
+                </div>
+
+                <div className='form-control'>
+                    <label htmlFor='primary-phone'>Primary phone number</label>
+                    <input type='text' id='primary-phone' { ...register( 'phoneNumbers.0' ) } />
+                </div>
+
+                <div className='form-control'>
+                    <label htmlFor='secondary-phone'>Secondary phone number</label>
+                    <input type='text' id='secondary-phone' { ...register( 'phoneNumbers.1' ) } />
                 </div>
 
                 <button>Submit</button>

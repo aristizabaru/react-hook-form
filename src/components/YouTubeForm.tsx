@@ -1,5 +1,6 @@
 import { useForm, useFieldArray } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
+import { useEffect } from 'react';
 
 let renderCount = 0;
 
@@ -28,7 +29,7 @@ export const YouTubeForm = () => {
             const data = await response.json();
 
             return {
-                username: 'Andres',
+                username: 'Batman',
                 email: data?.email,
                 channel: 'aristizabaru',
                 social: {
@@ -48,6 +49,7 @@ export const YouTubeForm = () => {
         control,
         handleSubmit,
         formState,
+        watch,
     } = form;
 
     const {
@@ -59,15 +61,28 @@ export const YouTubeForm = () => {
         control
     } );
 
+    // Para implementar un side effect después de ver un valor
+    useEffect( () => {
+        const subscription = watch( value => {
+            console.log( value );
+        } );
+
+        return () => subscription.unsubscribe();
+    }, [ watch ] );
+
+    // const watchUserName = watch( 'username' );
+
     const onSubmit = ( data: FormValues ) => {
         console.log( 'Form submitted', data );
     };
+
+
 
     return (
         <div>
             <span>Form renders: { ++renderCount / 2 }</span>
             <h1>YouTube Form</h1>
-
+            {/* <h2>Watched value: { watchUserName }</h2> */ }
             <form onSubmit={ handleSubmit( onSubmit ) } noValidate>
                 <div className='form-control'>
                     <label htmlFor='username'>Username</label>

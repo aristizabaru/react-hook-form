@@ -1,30 +1,39 @@
-# React + TypeScript + Vite
+# React Hook Form
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Acerca de
 
-Currently, two official plugins are available:
+Este es un repositorio personal para explorar los conceptos del paquete [REACT HOOK FORM](https://react-hook-form.com/), el cual permite la gestión de formularios desde [REACT](https://react.dev/), para más información visite la página del equipo desarrollador [aquí](https://react-hook-form.com/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Dentro de la configuración y desarrollo del proyecto se usa [Vite](https://vitejs.dev/) como bundler.
 
-## Expanding the ESLint configuration
+## Requerimientos
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Node 20.9.0 LTS
+- React 18.2.0
+- React Hook Form 7.51.4
 
-- Configure the top-level `parserOptions` property like this:
+## Instalación del proyecto
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+Para instalar el proyecto siga los siguientes pasos
+
+Instalar módulos o dependencias
+
+```
+npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Ejecución del proyecto
+
+Para ejecutar el proyecto se deben seguir los siguientes pasos:
+
+1. Ejecutar entorno de desarrollo
+
+```
+npm run dev
+```
+
+3. Generar build de producción
+
+```
+npm build
+```

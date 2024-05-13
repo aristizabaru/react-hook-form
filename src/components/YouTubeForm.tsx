@@ -49,7 +49,7 @@ export const YouTubeForm = () => {
         control,
         handleSubmit,
         formState,
-        // watch,
+        watch,
         getValues,
         setValue,
     } = form;
@@ -158,7 +158,11 @@ export const YouTubeForm = () => {
 
                 <div className='form-control'>
                     <label htmlFor='x'>X</label>
-                    <input type='text' id='x' { ...register( 'social.x' ) } />
+                    <input type='text' id='x' { ...register( 'social.x',
+                        {
+                            disabled: watch( 'channel' ) === ''
+                        }
+                    ) } />
                 </div>
 
                 <div className='form-control'>
